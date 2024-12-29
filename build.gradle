@@ -1,0 +1,78 @@
+plugins {
+    id 'java-library'
+    id 'com.github.ben-manes.versions' version '0.46.0'
+    id 'maven-publish'
+}
+
+group = 'me.aaronfulton'
+version = '1.0'
+
+repositories {
+    mavenCentral()
+
+    maven {
+        name = "spigotmc-repo"
+        url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/"
+    }
+    maven {
+        name = "sonatype"
+        url = "https://oss.sonatype.org/content/groups/public/"
+    }
+}
+
+// Define libraryDescription early in the build script
+ext {
+    libraryDescription = "A reusable library for Minecraft plugin development."
+}
+
+dependencies {
+    // Minecraft API
+    compileOnly("org.spigotmc:spigot-api:1.21-R0.1-SNAPSHOT")
+
+    // Testing
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.10.0")
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+tasks.jar {
+    archiveBaseName.set('MoonPluginLibrary')
+    archiveVersion.set(version)
+    manifest {
+        attributes(
+                'Implementation-Title': 'MoonPluginLibrary',
+                'Implementation-Version': version,
+                'Built-By': System.getProperty('user.name'),
+                'Built-Date': new Date().toString(),
+                'Implementation-Vendor': group,
+                'Description': libraryDescription // Now accessible here
+        )
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            groupId = group // Corrected from groupId to group
+            artifactId = 'MoonPluginLibrary'
+            version = project.version // Ensuring version is correct
+        }
+    }
+    repositories {
+        maven {
+            name = "LocalMavenRepository"
+            url = uri("file://${buildDir}/repo")
+        }
+    }
+}
