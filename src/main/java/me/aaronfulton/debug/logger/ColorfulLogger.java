@@ -1,8 +1,5 @@
 package me.aaronfulton.debug.logger;
 
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.PluginLogger;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.*;
@@ -25,7 +22,7 @@ public class ColorfulLogger {
      * @param name   The name of the plugin (for prefixing log messages).
      */
     public static void initialize(JavaPlugin plugin, String name) {
-        logger =  new CustomPluginLogger(plugin);
+        logger = new CustomPluginLogger(plugin);
         pluginName = name;
         logger.setUseParentHandlers(false);
 

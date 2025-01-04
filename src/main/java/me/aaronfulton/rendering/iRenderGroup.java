@@ -27,20 +27,20 @@ public interface iRenderGroup {
     BaseBlockEntity getEntity(String key);
 
     /**
-     * Sets the tick rate for this group.
-     *
-     * Tick rate determines how often the update() method is executed.
-     *
-     * @param tickRate The tick rate in ticks.
-     */
-    void setTickRate(int tickRate);
-
-    /**
      * Gets the tick rate for this group.
      *
      * @return The tick rate in ticks.
      */
     int getTickRate();
+
+    /**
+     * Sets the tick rate for this group.
+     * <p>
+     * Tick rate determines how often the update() method is executed.
+     *
+     * @param tickRate The tick rate in ticks.
+     */
+    void setTickRate(int tickRate);
 
     /**
      * Updates all entities in the group based on the tick rate.

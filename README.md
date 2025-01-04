@@ -6,10 +6,12 @@ it currently targets Minecraft version **1.21.3**.
 ## Features
 
 ### Current Features
+
 - **ASCII ColorLogging**: allow for easy use of Ascii colors in logging.
-- **Rendering Display Entities**: Allows for simpled and safer rendering of display entities. 
+- **Rendering Display Entities**: Allows for simpled and safer rendering of display entities.
 
 ### Planned Features (Version 1.0)
+
 - **ParticleUtils**: Tools for creating particles.
 - **HUD System**: A flexible system managing HUD elements.
 - **GUI System**: Simplify the creation of custom GUIs.

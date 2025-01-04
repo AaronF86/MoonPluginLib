@@ -1,5 +1,6 @@
 package me.aaronfulton.items.CustomActionItems;
 
+import me.aaronfulton.EventHandlers.ItemEventHanders.ActionHandler;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -12,8 +13,25 @@ public class ItemManager {
 
     public void registerItem(ActionItem actionItem) {
         registeredItems.add(actionItem);
-        actionItem.getCustomFunctions().keySet().forEach(this::activateHandler);
+        for (ItemActions action : actionItem.getCustomFunctions().keySet()) {
+            action.getHandlerClass().ifPresent(handlerClass -> {
+                ActionHandler existingHandler = activeHandlers.stream()
+                        .filter(handler -> handler.getClass().equals(handlerClass))
+                        .findFirst()
+                        .orElse(null);
+
+                if (existingHandler == null) {
+                    try {
+                        ActionHandler newHandler = handlerClass.getDeclaredConstructor().newInstance();
+                        activeHandlers.add(newHandler);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
     }
+
 
     public Optional<ActionItem> getItem(String key) {
         return registeredItems.stream()
@@ -27,5 +45,13 @@ public class ItemManager {
 
     private void activateHandler(ItemActions action) {
         //Turn on handlers
+    }
+
+    public List<ActionItem> getRegisteredItems() {
+        return registeredItems;
+    }
+
+    public List<ActionHandler> getActiveHandlers() {
+        return activeHandlers;
     }
 }

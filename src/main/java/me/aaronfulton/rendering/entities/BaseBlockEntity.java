@@ -13,9 +13,8 @@ import java.util.List;
 public abstract class BaseBlockEntity implements IRenderEntity {
     private final BlockDisplay display;
     private final List<BaseBlockEntity> children = new ArrayList<>();
-    private BaseBlockEntity parent;
-
     private final String identifier;
+    private BaseBlockEntity parent;
     private Location location;
     private Vector velocity;
     private BlockData blockData;

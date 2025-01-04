@@ -31,13 +31,13 @@ public class BaseRenderGroup implements iRenderGroup {
     }
 
     @Override
-    public void setTickRate(int tickRate) {
-        this.tickRate = tickRate;
+    public int getTickRate() {
+        return tickRate;
     }
 
     @Override
-    public int getTickRate() {
-        return tickRate;
+    public void setTickRate(int tickRate) {
+        this.tickRate = tickRate;
     }
 
     @Override

@@ -43,7 +43,7 @@ public class TestLogger {
 
         String complexString = "<?[31mthis is a test of the ascii component?[0m?[41m?[31m this should be able to do all types of things like ?[0m?[31m?[46mbackground colors?[0m?[44m and ?[0m?[1mformatting?[0m>";
 
-                assertEquals(complexString, complexComponent.build());
+        assertEquals(complexString, complexComponent.build());
     }
 
     @Test

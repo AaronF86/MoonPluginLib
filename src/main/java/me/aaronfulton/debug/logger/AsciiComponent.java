@@ -7,6 +7,7 @@ public class AsciiComponent {
     private Color currentColor;
     private BackgroundColor currentBackground;
     private Format currentFormat;
+
     // Constructor that initializes the component with text
     private AsciiComponent(String text) {
         builder.append(text);

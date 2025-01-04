@@ -19,12 +19,12 @@ public class RenderEngine {
         return groups.get(key);
     }
 
-    public void setTickRate(int tickRate) {
-        this.tickRate = tickRate;
-    }
-
     public int getTickRate() {
         return tickRate;
+    }
+
+    public void setTickRate(int tickRate) {
+        this.tickRate = tickRate;
     }
 
     // update the entities in the gameWorld
